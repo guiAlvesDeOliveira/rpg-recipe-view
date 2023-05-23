@@ -1,44 +1,33 @@
-import './style.css'
+import './style.css';
 
-export const RecipeCard = () => (
-    <div className='recipe'>
-        <div className='title'>
-            <h3>Nome da Receita</h3>
-        </div>
-        <div className='ingredients'>
-            <li>Ingrediente</li>
-            <li>Ingrediente</li>
-            <li>Ingrediente</li>
-        </div>
-        <div className='fail-success'>
-            <div className='fail'>
-                <p>Grande Falha</p>
-                <p>Pequena Falha</p>
-                <p>Falha Critica</p>
+export const RecipeCard = ({ recipe }) => {
+    const ingredients = recipe.ingredients;
+
+    return (
+        <div className='recipe' key={recipe.id}>
+            <div className='title text-center'>
+                <h3 className='font-bold text-xl'>{recipe.name}</h3>
             </div>
-            <div className='success'>
-                <p>Sucesso</p>
-                <p>Critico</p>
+            <div className='ingredients px-4'>
+                {ingredients.map((ingredient) => (
+                    <li>{ingredient}</li>
+                ))}
+            </div>
+            <div className='fail-success'>
+                <div className='fail'>
+                    <p><b>Falha: </b>{recipe.fail}</p>
+                    <p><b>Falha Grande: </b>{recipe.bigFail}</p>
+                    <p><b>Falha Critica: </b>{recipe.criticalFail}</p>
+                </div>
+                <div className='success'>
+                    <p><b>Acerto: </b>{recipe.success}</p>
+                    <p><b>Acerto Critico: </b>{recipe.critical}</p>
+                </div>
+            </div>
+            <div className='infos'>
+                <p><b>Dificuldade: </b>{recipe.savingThrow}</p>
+                <p><b>Servem: </b>{recipe.serves}</p>
             </div>
         </div>
-        <div className='infos'>
-            <p>Teste</p>
-            <p>Servem</p>
-        </div>
-    </div>
-)
-
-
-/*
-const recipeSchema = new mongoose.Schema({
-   name: String,
-   ingredients: [String],
-   savingThrow: Number,
-   fail: String,
-   bigFail: String,
-   criticalFail: String,
-   success: String,
-   critical: String,
-   serves: String
-});
- */
+    );
+};
