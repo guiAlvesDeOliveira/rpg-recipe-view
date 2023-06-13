@@ -1,12 +1,13 @@
 import './style.css';
 
 export const RecipeCard = ({ recipe }) => {
-    const ingredients = recipe.ingredients;
+    const ingredients = recipe.ingredients ?? [];
 
     return (
         <div className='recipe' key={recipe.id}>
             <div className='title text-center'>
                 <h3 className='font-bold text-xl'>{recipe.name}</h3>
+
             </div>
             <div className='ingredients px-4'>
                 {ingredients.map((ingredient) => (
@@ -27,6 +28,7 @@ export const RecipeCard = ({ recipe }) => {
             <div className='infos'>
                 <p><b>Dificuldade: </b>{recipe.savingThrow}</p>
                 <p><b>Servem: </b>{recipe.serves}</p>
+                <p><b>Preparação:</b> {recipe.preparation}</p>
             </div>
         </div>
     );
